@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Health Monitoring</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0F172A;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:400px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+h2{
+    text-align:center;
+    color:#DC2626;
+    margin-bottom:20px;
+}
+
+.card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    margin:12px 0;
+    background:#F8FAFC;
+    border-radius:10px;
+    border-left:6px solid #2563EB;
+}
+
+.label{
+    font-weight:bold;
+}
+
+.value{
+    font-size:18px;
+    font-weight:bold;
+    color:#2563EB;
+}
+
+.status{
+    text-align:center;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+    color:white;
+    font-weight:bold;
+    background:#16A34A;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563EB;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1D4ED8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>❤️ Patient Health Monitoring</h2>
+
+<div class="card">
+    <span class="label">❤️ Heart Rate</span>
+    <span class="value" id="heart">75 BPM</span>
+</div>
+
+<div class="card">
+    <span class="label">🫁 SpO₂ Level</span>
+    <span class="value" id="spo2">98 %</span>
+</div>
+
+<div class="card">
+    <span class="label">🌡 Body Temperature</span>
+    <span class="value" id="temp">36.5 °C</span>
+</div>
+
+<div class="status" id="status">
+    ✅ Patient Condition Normal
+</div>
+
+<button onclick="updateHealth()">
+Refresh Health Data
+</button>
+
+</div>
+
+
+<script>
+
+function updateHealth(){
+
+    // Demo sensor values
+    let heart = Math.floor(60 + Math.random()*60);
+    let spo2 = Math.floor(90 + Math.random()*10);
+    let temp = (36 + Math.random()*2).toFixed(1);
+
+    document.getElementById("heart").innerHTML =
+        heart + " BPM";
+
+    document.getElementById("spo2").innerHTML =
+        spo2 + " %";
+
+    document.getElementById("temp").innerHTML =
+        temp + " °C";
+
+
+    let status = document.getElementById("status");
+
+
+    if(heart > 110 || spo2 < 92 || temp > 38){
+
+        status.innerHTML =
+        "⚠ Abnormal Health Condition";
+
+        status.style.background="#DC2626";
+
+    }
+
+    else if(heart > 100 || spo2 < 95 || temp > 37.5){
+
+        status.innerHTML =
+        "⚠ Monitor Patient";
+
+        status.style.background="#F59E0B";
+
+    }
+
+    else{
+
+        status.innerHTML =
+        "✅ Patient Condition Normal";
+
+        status.style.background="#16A34A";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
